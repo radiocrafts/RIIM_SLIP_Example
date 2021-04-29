@@ -1,0 +1,175 @@
+[
+    {
+        "id": "fcbb24dc.49523",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "949130d8.688ee8",
+        "type": "coap in",
+        "z": "fcbb24dc.49523",
+        "method": "PUT",
+        "name": "",
+        "server": "4f40af23.8f5648",
+        "url": "/CommData",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "b4b971ae.b3121",
+                "86d2c33.1fc44c"
+            ]
+        ]
+    },
+    {
+        "id": "bbdce846.598868",
+        "type": "debug",
+        "z": "fcbb24dc.49523",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b4b971ae.b3121",
+        "type": "function",
+        "z": "fcbb24dc.49523",
+        "name": "",
+        "func": "\nlet IPAddr = Buffer.from([0xfd,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x12,0x34]);\nmsg.res.end(IPAddr);\nconsole.log(\"Test\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "bbdce846.598868"
+            ]
+        ]
+    },
+    {
+        "id": "cdadc80c.11454",
+        "type": "coap request",
+        "z": "fcbb24dc.49523",
+        "method": "PUT",
+        "observe": false,
+        "multicast": false,
+        "multicastTimeout": 20000,
+        "url": "coap://[fd00::ff:fe00:acb0]/BRData",
+        "content-format": "text/plain",
+        "raw-buffer": true,
+        "name": "",
+        "x": 570,
+        "y": 300,
+        "wires": [
+            [
+                "8a716500.e3fc6"
+            ]
+        ]
+    },
+    {
+        "id": "8a716500.e3fc6",
+        "type": "debug",
+        "z": "fcbb24dc.49523",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "86d2c33.1fc44c",
+        "type": "function",
+        "z": "fcbb24dc.49523",
+        "name": "",
+        "func": "\nlet IPAddr = Buffer.from([0xfd,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x12,0x34]);\n\nconsole.log(\"COMMISIONING: Got address from node:\")\nconsole.log(msg.req.payload)\nconsole.log(\"Sending server address\")\nconsole.log(IPAddr)\nconsole.log()\n\n// IPAddr is the server address the nodes will attach to\nmsg.payload=IPAddr;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 300,
+        "wires": [
+            [
+                "cdadc80c.11454"
+            ]
+        ]
+    },
+    {
+        "id": "bbdb2659.df2768",
+        "type": "coap in",
+        "z": "fcbb24dc.49523",
+        "method": "PUT",
+        "name": "",
+        "server": "4f40af23.8f5648",
+        "url": "/ServerData",
+        "x": 150,
+        "y": 420,
+        "wires": [
+            [
+                "d025b618.3e3458",
+                "2d18c6dc.326b3a"
+            ]
+        ]
+    },
+    {
+        "id": "d025b618.3e3458",
+        "type": "debug",
+        "z": "fcbb24dc.49523",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "2d18c6dc.326b3a",
+        "type": "function",
+        "z": "fcbb24dc.49523",
+        "name": "",
+        "func": "console.log(\"Got message from\")\nconsole.log(msg.req.rsinfo.address)\nconsole.log(msg.req.payload.toString())\nconsole.log()\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4f40af23.8f5648",
+        "type": "coap-server",
+        "name": "CoAPServer",
+        "port": "5683"
+    }
+]

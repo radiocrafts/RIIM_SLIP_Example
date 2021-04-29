@@ -32,7 +32,11 @@
 static const uint32_t   timerPeriod=1000;
 static uint8_t timerHandler;
 
-//const IPAddr DestIP={.byte={0x20, 0x01, 0x46, 0x46, 0xf8, 0x86,0,0,0,0,0,0,0 ,0x01,0x12,0x34}};
+// Use address 0xfd56::1:1 as commisioning address. This is how the external network
+// will get this node's IPv6 address
+//const IPAddr CommisioningIP={.byte={0xfd, 0x56, 0,0,0,0,0,0,0,0,0,0,0, 0x01, 0x00, 0x01}};
+const IPAddr CommisioningIP={.byte={0xfd, 0x00, 0,0,0,0,0,0,0,0,0,0,0, 0x01, 0x12, 0x34}};
+const uint8_t CoAP_CommisioningCoAPResource[]="CommData";
 
 IPAddr DestIP;
 bool SendPeriodicCoAPMessage=false;
@@ -41,7 +45,7 @@ const uint8_t CoAP_ResourceName[]="BRData";
 const uint8_t CoAP_DestinationCoAPResource[]="ServerData";
 const uint8_t CoAP_TransmissionString[]="Hello, World!";
 
-void UAPI_CoAP_Handler(RequestType type, IPAddr src_ipAddr, uint8_t *payload, uint8_t payloadSize, uint8_t *response, uint8_t *responseSize)
+void CoAPHandler(RequestType type, IPAddr src_ipAddr, uint8_t *payload, uint8_t payloadSize, uint8_t *response, uint8_t *responseSize)
 {
     int i;
 
@@ -55,7 +59,7 @@ void UAPI_CoAP_Handler(RequestType type, IPAddr src_ipAddr, uint8_t *payload, ui
         for(i=0;i<sizeof(DestIP);i++){
             response[i]=DestIP.byte[i];
         }
-        responseSize=sizeof(DestIP);
+        *responseSize=sizeof(DestIP);
 
     } else if(type == CoAP_PUT){
         // Set the IP address to periodically send to
@@ -72,6 +76,10 @@ void UAPI_CoAP_Handler(RequestType type, IPAddr src_ipAddr, uint8_t *payload, ui
         // Enable periodic transmission
         SendPeriodicCoAPMessage=true;
 
+        // Connect to server
+        CoAP.disconnectFromServer();
+        CoAP.connectToServer6(DestIP,false);
+
     } else {
         // Unsupported request type.
         // Do nothing. 
@@ -85,9 +93,17 @@ void UAPI_CoAP_Handler(RequestType type, IPAddr src_ipAddr, uint8_t *payload, ui
  */
 void SendCoAP()
 {
-    // Check if we are to send message. This is set to true
-    // if we have received a destination IPv6 address
+    int i;
+    IPAddr MyIPAddr;
+
+
+    // Check if we are to send a regular message. 
+    // This is set to true if we have received a destination IPv6 address
+    // If not: Send message to commisioning IP address insteead consisting of
+    // our own address
     if(SendPeriodicCoAPMessage != true){
+        Network.getAddress(&MyIPAddr);
+        CoAP.sendNoAck(CoAP_PUT, false, CoAP_CommisioningCoAPResource, (uint8_t*)&MyIPAddr, sizeof(MyIPAddr));
         return;
     }
 
@@ -142,8 +158,8 @@ RIIM_SETUP()
     // Enable and start SLIP
     Network.startSlip();
 
-//    CoAP.connectToServer6(DestIP,false);
-
+    // Register commisioning address
+    CoAP.connectToServer6(CommisioningIP,false);
 
     // Setup timers
     timerHandler=Timer.create(PERIODIC, timerPeriod, SendCoAP);
