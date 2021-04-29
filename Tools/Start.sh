@@ -37,7 +37,7 @@ then
 fi
 
 echo "Starting SLIP"
-sudo ./StartSlip.sh
+sudo ./startSlip.sh
 
 # SLIP takes some time to start
 sleep 5
