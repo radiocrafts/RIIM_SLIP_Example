@@ -15,29 +15,29 @@ if [ $UploadICI == "y" ] || [ $UploadPlatforms == "y" ]
 then
     if [ $UploadPlatforms == "y" ]
     then
-    python3 ./Tools/rc1882_bootloader_utility/rc188x_bootloader_utility.py load-image -t 100 -p $BRPort -f Platforms/BR_Platform.bin
+    python3 ./Tools/rc18xx_bootloader_utility/rc188x_bootloader_utility.py load-image -t 100 -p $BRPort -f Platforms/BR_Platform.bin
     fi
 
     if [ $UploadICI == "y" ]
     then
-    python3 ./Tools/rc1882_bootloader_utility/rc188x_bootloader_utility.py load-image -t 100 -p $BRPort -f Output/BR.bin
+    python3 ./Tools/rc18xx_bootloader_utility/rc188x_bootloader_utility.py load-image -t 100 -p $BRPort -f ./ICI_Applications/Example_SLIP/Output/BR.bin
     fi
 
     echo "What is the port of the Mesh Router? (E.g. /dev/ttyUSB1 - See documentation - troubleshooting for help)"
     read MRPort
     if [ $UploadPlatforms == "y" ]
     then
-    python3 ./Tools/rc1882_bootloader_utility/rc188x_bootloader_utility.py load-image -t 100 -p $MRPort -f Platforms/MR_Platform.bin
+    python3 ./Tools/rc18xx_bootloader_utility/rc188x_bootloader_utility.py load-image -t 100 -p $MRPort -f Platforms/MR_Platform.bin
     fi
 
     if [ $UploadICI == "y" ]
     then
-    python3 ./Tools/rc1882_bootloader_utility/rc188x_bootloader_utility.py load-image -t 100 -p $MRPort -f Output/MR.bin
+    python3 ./Tools/rc18xx_bootloader_utility/rc188x_bootloader_utility.py load-image -t 100 -p $MRPort -f ./ICI_Applications/Example_SLIP/Output/MR.bin
     fi
 fi
 
 echo "Starting SLIP"
-sudo ./startSlip.sh
+sudo ./Tools/startSlip.sh $BRPort
 
 # SLIP takes some time to start
 sleep 5

@@ -6,7 +6,7 @@
 echo " "
 echo "************************************************************"
 echo "This script will install all mandatory packages"
-echo "Do you also want to install the recommended optional packages (wireshark, microcom, gcc-arm-none-eabi, binutils-arm-none-eabi)"
+echo "Do you also want to install the recommended optional packages (wireshark, microcom, tcpdump)"
 echo "Press [y/n] and <ENTER> : "
 read InstallOptional
 
@@ -24,7 +24,7 @@ if [ "$InstallOptional" == "y" ]
 then
     sudo apt install wireshark
     sudo apt install microcom
-#    sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi
+    sudo apt install tcpdump
 fi
 
 # Node Red is special
