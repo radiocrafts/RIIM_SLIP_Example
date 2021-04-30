@@ -5,7 +5,8 @@ sudo pkill tunslip6
 
 NetworkDevice=eth0
 #SerialDevice=/dev/ttyUSB0
-SerialDevice=/dev/serial0
+#SerialDevice=/dev/serial0
+SerialDevice=$1
 TUNAddr=1:1234
 
 
@@ -23,7 +24,7 @@ sudo sysctl net.ipv6.conf.all.forwarding=1
 sudo sysctl net.ipv6.conf.all.proxy_ndp=1
 
 # Start the tunslip tool
-sudo ./tunslip6 -v -s $SerialDevice $Prefix::$TUNAddr/64 &
+sudo ./Tools/tunslip6 -v -s $SerialDevice $Prefix::$TUNAddr/64 &
 
 # Generate the radvd configuration file
 read -r -d '' VAR << EOF
