@@ -3,7 +3,9 @@
 # RIIM SLIP example 
 
 ## Installation
-Download the source, either by cloning the repository or downloading the zip file provided.
+Download the source, either by cloning the repository or downloading the zip file provided here:
+[https://github.com/RCfesk/RIIM_Slip/blob/master/Packages/RIIM_Slip.zip]
 
 ## Documentation
-Please see the documentation located in ./Doc/build/html/index.html 
+Please see the documentation located here:
+[https://github.com/RCfesk/RIIM_Slip/blob/master/Doc/source/conf.py]
