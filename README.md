@@ -7,4 +7,3 @@ Download the source, either by cloning the repository or downloading the zip fil
 
 ## Documentation
 Please see the documentation located in ./Doc/build/html/index.html 
-
