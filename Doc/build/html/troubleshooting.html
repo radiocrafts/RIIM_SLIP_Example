@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   
@@ -30,14 +30,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -182,16 +178,27 @@
 <div class="section" id="how-do-i-find-the-ip-address-of-the-edge-computer">
 <h2>How do I find the IP address of the Edge Computer<a class="headerlink" href="#how-do-i-find-the-ip-address-of-the-edge-computer" title="Permalink to this headline">¶</a></h2>
 <p>Execute the following command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ip</span> <span class="n">a</span>
+</pre></div>
+</div>
 <p>This will list all addresses associated with your system. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="p">:</span> <span class="n">eth0</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">MULTICAST</span><span class="p">,</span><span class="n">UP</span><span class="p">,</span><span class="n">LOWER_UP</span><span class="o">&gt;</span> <span class="n">mtu</span> <span class="mi">1500</span> <span class="n">qdisc</span> <span class="n">pfifo_fast</span> <span class="n">state</span> <span class="n">UP</span> <span class="n">group</span> <span class="n">default</span> <span class="n">qlen</span> <span class="mi">1000</span>
+    <span class="n">link</span><span class="o">/</span><span class="n">ether</span> <span class="n">XX</span><span class="p">:</span><span class="n">XX</span><span class="p">:</span><span class="n">XX</span><span class="p">:</span><span class="n">XX</span><span class="p">:</span><span class="n">XX</span><span class="p">:</span><span class="n">XX</span> <span class="n">brd</span> <span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span>
+<span class="hll">    <span class="n">inet</span> <span class="n">XXX</span><span class="o">.</span><span class="n">XXX</span><span class="o">.</span><span class="n">XXX</span><span class="o">.</span><span class="n">XXX</span><span class="o">/</span><span class="mi">24</span>
+</span>    <span class="n">valid_lft</span> <span class="mi">2653</span><span class="n">sec</span> <span class="n">preferred_lft</span> <span class="mi">2024</span><span class="n">sec</span>
+<span class="hll">    <span class="n">inet6</span> <span class="n">XXXX</span><span class="p">::</span><span class="n">XXXX</span><span class="p">:</span><span class="n">XXXX</span><span class="p">:</span><span class="n">XXXX</span><span class="p">:</span><span class="n">XXXX</span><span class="o">/</span><span class="mi">64</span>
+</span>    <span class="n">valid_lft</span> <span class="n">forever</span> <span class="n">preferred_lft</span> <span class="n">forever</span>
+</pre></div>
+</div>
 <p>For accessing Node RED, you can use either the IPv4 (specified by <strong>inet</strong> above) or IPv6 address (specified by <strong>inet6</strong> above) of the board.</p>
 </div>
 <div class="section" id="how-do-i-find-the-serial-port-used-for-the-border-router">
 <h2>How do I find the serial port used for the Border Router<a class="headerlink" href="#how-do-i-find-the-serial-port-used-for-the-border-router" title="Permalink to this headline">¶</a></h2>
 <p>In Linux, the drivers for the USB-to-UART IC (FTDI FT-series) is built into the kernel. When a new board is connected, a new device will automatically appear in the <strong>/dev/</strong> folder. The name will be ttyUSB followed by a number, which start at zero for the first device enumerated. Therefore:</p>
 <ul class="simple">
-<li>The first device enumerated will get the device <strong>/dev/ttyUSB0</strong></li>
-<li>The next will get the device <strong>/dev/ttyUSB1</strong></li>
-<li>….and so on.</li>
+<li><p>The first device enumerated will get the device <strong>/dev/ttyUSB0</strong></p></li>
+<li><p>The next will get the device <strong>/dev/ttyUSB1</strong></p></li>
+<li><p>….and so on.</p></li>
 </ul>
 </div>
 </div>

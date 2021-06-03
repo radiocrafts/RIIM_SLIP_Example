@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   
@@ -30,11 +30,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -170,17 +169,17 @@
             
   <div class="section" id="acronyms">
 <h1>Acronyms<a class="headerlink" href="#acronyms" title="Permalink to this headline">¶</a></h1>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="20%" />
-<col width="80%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>UART</td>
-<td>Universal Asynchronous Receiver Transmitter</td>
+<tbody>
+<tr class="row-odd"><td><p>UART</p></td>
+<td><p>Universal Asynchronous Receiver Transmitter</p></td>
 </tr>
-<tr class="row-even"><td>SLIP</td>
-<td>Serial Line IP</td>
+<tr class="row-even"><td><p>SLIP</p></td>
+<td><p>Serial Line IP</p></td>
 </tr>
 </tbody>
 </table>
@@ -192,10 +191,10 @@
 <div><p>You want to create a system consisting of a few nodes logging the temperature at different locations. The system uses CoAP to send and receive data to/from a border router connected to an edge computer. The edge computer is a Raspberry Pi 3 running the Node RED application. You need to use IPv6 all the way.</p>
 <p>The main challenges and tasks are therefore these:</p>
 <ul class="simple">
-<li>The addresses of the nodes are not known beforehand. So after deployment this info needs to be gathered automatically.</li>
-<li>The edge computer needs to be set up to support IPv6 routing, connect to the border router using SLIP and connect the network to the Node RED application</li>
-<li>The ICI applications for the Border Router and the Mesh Routers needs to be developed</li>
-<li>An application (flow) for the Node RED application needs to be developed</li>
+<li><p>The addresses of the nodes are not known beforehand. So after deployment this info needs to be gathered automatically.</p></li>
+<li><p>The edge computer needs to be set up to support IPv6 routing, connect to the border router using SLIP and connect the network to the Node RED application</p></li>
+<li><p>The ICI applications for the Border Router and the Mesh Routers needs to be developed</p></li>
+<li><p>An application (flow) for the Node RED application needs to be developed</p></li>
 </ul>
 </div></blockquote>
 <p>This example provides a possible solution to these challenges and tasks</p>
@@ -221,12 +220,12 @@
 <h2>Topics not covered in this example<a class="headerlink" href="#topics-not-covered-in-this-example" title="Permalink to this headline">¶</a></h2>
 <p>These topics are not covered in this example, but could be relevant in a real world deployment</p>
 <ul class="simple">
-<li>Installation of operating system (See <a class="reference external" href="https://www.raspberrypi.org/software/operating-systems/">https://www.raspberrypi.org/software/operating-systems/</a></li>
-<li>How to customize (low level) Linux network setup such as routing, proxying, firewalls etc.</li>
-<li>Migration to other operating systems, hardware or Linux distributions</li>
-<li>Security policies, such as parts running with administrator privilegies, Node Red keys, DTLS etc.</li>
-<li>Containerizations, virtualizations, Python environments</li>
-<li>edge computer application auto startup on boot (See <a class="reference external" href="https://nodered.org/docs/getting-started/raspberrypi">https://nodered.org/docs/getting-started/raspberrypi</a></li>
+<li><p>Installation of operating system (See <a class="reference external" href="https://www.raspberrypi.org/software/operating-systems/">https://www.raspberrypi.org/software/operating-systems/</a></p></li>
+<li><p>How to customize (low level) Linux network setup such as routing, proxying, firewalls etc.</p></li>
+<li><p>Migration to other operating systems, hardware or Linux distributions</p></li>
+<li><p>Security policies, such as parts running with administrator privilegies, Node Red keys, DTLS etc.</p></li>
+<li><p>Containerizations, virtualizations, Python environments</p></li>
+<li><p>edge computer application auto startup on boot (See <a class="reference external" href="https://nodered.org/docs/getting-started/raspberrypi">https://nodered.org/docs/getting-started/raspberrypi</a></p></li>
 </ul>
 </div>
 <div class="section" id="edge-computer">
@@ -237,26 +236,24 @@
 <h2>RIIM network nodes<a class="headerlink" href="#riim-network-nodes" title="Permalink to this headline">¶</a></h2>
 <p>There are two ICI applications provided:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Border Router application</dt>
-<dd><ul class="first last">
-<li>Connects via SLIP using UART</li>
-<li>Sets up a CoAP resource called <strong>“BRData”</strong> that is accessible from all nodes and SLIP</li>
-<li>BRData can respond to CoAP GET and CoAP PUT, to read/write an IPv6 address</li>
-<li>This address is used to send periodic CoAP messages from the BR</li>
-<li>If no IPv6 address is set in <strong>BRData</strong> , the node periodically send its IPv6 address to coap://[fd00::1:1234]/CommData</li>
-<li>This is used for commisioning, as the server gets to know the address of the node</li>
+<li><dl class="simple">
+<dt>Border Router application</dt><dd><ul>
+<li><p>Connects via SLIP using UART</p></li>
+<li><p>Sets up a CoAP resource called <strong>“BRData”</strong> that is accessible from all nodes and SLIP</p></li>
+<li><p>BRData can respond to CoAP GET and CoAP PUT, to read/write an IPv6 address</p></li>
+<li><p>This address is used to send periodic CoAP messages from the BR</p></li>
+<li><p>If no IPv6 address is set in <strong>BRData</strong> , the node periodically send its IPv6 address to coap://[fd00::1:1234]/CommData</p></li>
+<li><p>This is used for commisioning, as the server gets to know the address of the node</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Mesh Router application</dt>
-<dd><ul class="first last">
-<li>Sets up a CoAP resource called <strong>“MRData”</strong> that is accessible from BR and everything the BR is connected to</li>
-<li>BRData can respond to CoAP GET and CoAP PUT, to read/write an IPv6 address</li>
-<li>This address is used to send periodic CoAP messages from the MR</li>
-<li>The application also prints out the source and destination address on UART</li>
+<li><dl class="simple">
+<dt>Mesh Router application</dt><dd><ul>
+<li><p>Sets up a CoAP resource called <strong>“MRData”</strong> that is accessible from BR and everything the BR is connected to</p></li>
+<li><p>BRData can respond to CoAP GET and CoAP PUT, to read/write an IPv6 address</p></li>
+<li><p>This address is used to send periodic CoAP messages from the MR</p></li>
+<li><p>The application also prints out the source and destination address on UART</p></li>
 </ul>
 </dd>
 </dl>

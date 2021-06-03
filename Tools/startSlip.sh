@@ -24,7 +24,7 @@ sudo sysctl net.ipv6.conf.all.forwarding=1
 sudo sysctl net.ipv6.conf.all.proxy_ndp=1
 
 # Start the tunslip tool
-sudo ./Tools/tunslip6 -v -s $SerialDevice $Prefix::$TUNAddr/64 &
+sudo ./tunslip6 -v -s $SerialDevice $Prefix::$TUNAddr/64 &
 
 # Generate the radvd configuration file
 read -r -d '' VAR << EOF
