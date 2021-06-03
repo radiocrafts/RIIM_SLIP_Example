@@ -4,7 +4,7 @@ System Setup
 Linux Machine Setup
 -------------------
 
-*Note:* Running the **./Tools/Setup.sh** script helps you install all prerquisites and set up the Edge Computer
+*Note:* Running the **./install.sh** script helps you install all prerquisites and set up the Edge Computer
 
 
 Mandatory Prerequisites
@@ -14,7 +14,7 @@ radvd
 +++++
 radvd is a tool for routing IPv6 traffic. It can be installed like this
 
-.. code-block::
+.. code-block:: bash
 
     sudo apt install radvd | fdsfds
 
@@ -22,7 +22,7 @@ python3
 +++++++
 Python is an interpreted programming language. It can be installed like this
 
-.. code-block::
+.. code-block:: bash
 
     sudo apt install python3
 
@@ -30,7 +30,7 @@ Python packages
 +++++++++++++++
 Python needs a few packages that are used by the tools provided. These can be installed like this
 
-.. code-block::
+.. code-block:: bash
 
     pip3 install --user pycryptodomex pyserial
 
@@ -38,7 +38,7 @@ node-red
 ++++++++
 Node Red is a programming tool for connecting hardware, services and APIs. It can either be installed using the package manager like this (Not recommended, but easier):
 
-.. code-block::
+.. code-block:: bash
 
     sudo apt install Node-RED
 
@@ -52,7 +52,7 @@ wireshark
 +++++++++
 Wireshark is a tool for anayzing network traffic. It is useful for analyzing and debugging problems related to network traffic. It it can be installed like this
 
-.. code-block::
+.. code-block:: bash
 
     sudo apt install wireshark
 
@@ -61,7 +61,7 @@ microcom
 ++++++++
 Microcom is a simple terminal program that can be used for interfacing UART based serial interfaces. It can be installed like this
 
-.. code-block::
+.. code-block:: bash
 
     sudo apt install microcom
 
@@ -76,7 +76,7 @@ The script uses a precompiled SLIP/TUN driver. This driver is responsible for co
 
 Node RED Setup
 --------------
-After all other setup is done, it is time to setup Node RED. To access Node RED, it must have been started. That can be achieved by executing **./Tools/Start.sh** which will start it automatically.
+After all other setup is done, it is time to setup Node RED. To access Node RED, it must have been started. That can be achieved by executing **./start.sh** which will start it automatically.
 
 After startup, Node RED will be accesible through a browser. If you are running the browser locally (on the edge computer), the address will be `<http://localhost:1880/>`_ . If accessing from the outside, change **localhost** with the IP address of the edge computer. If unsure how to get it, see the troubleshooting section.
 
