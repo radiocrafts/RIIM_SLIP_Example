@@ -4,7 +4,8 @@ Troubleshooting
 I'm not able to access the serial port
 --------------------------------------
 Your user must be part of the **dialout** group. Use this command to fix it
-.. code-block::
+
+.. code-block:: bash
 
     sudo adduser $USER dialout
 
@@ -15,13 +16,13 @@ How do I find the IP address of the Edge Computer
 -------------------------------------------------
 Execute the following command
 
-.. code-block::
+.. code-block:: bash
 
     ip a
 
 This will list all addresses associated with your system. For example:
 
-.. code-block::
+.. code-block:: bash
     :emphasize-lines: 3,5
 
     2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000

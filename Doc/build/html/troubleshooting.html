@@ -172,9 +172,8 @@
 <h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="i-m-not-able-to-access-the-serial-port">
 <h2>I’m not able to access the serial port<a class="headerlink" href="#i-m-not-able-to-access-the-serial-port" title="Permalink to this headline">¶</a></h2>
-<p>Your user must be part of the <strong>dialout</strong> group. Use this command to fix it
-.. code-block:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo adduser $USER dialout
+<p>Your user must be part of the <strong>dialout</strong> group. Use this command to fix it</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo adduser <span class="nv">$USER</span> dialout
 </pre></div>
 </div>
 <p>You need to re-login (or even reboot) for the changes to take effect</p>
@@ -182,7 +181,18 @@
 <div class="section" id="how-do-i-find-the-ip-address-of-the-edge-computer">
 <h2>How do I find the IP address of the Edge Computer<a class="headerlink" href="#how-do-i-find-the-ip-address-of-the-edge-computer" title="Permalink to this headline">¶</a></h2>
 <p>Execute the following command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ip a
+</pre></div>
+</div>
 <p>This will list all addresses associated with your system. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2</span>: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc pfifo_fast state UP group default qlen <span class="m">1000</span>
+    link/ether XX:XX:XX:XX:XX:XX brd ff:ff:ff:ff:ff:ff
+<span class="hll">    inet XXX.XXX.XXX.XXX/24
+</span>    valid_lft 2653sec preferred_lft 2024sec
+<span class="hll">    inet6 XXXX::XXXX:XXXX:XXXX:XXXX/64
+</span>    valid_lft forever preferred_lft forever
+</pre></div>
+</div>
 <p>For accessing Node RED, you can use either the IPv4 (specified by <strong>inet</strong> above) or IPv6 address (specified by <strong>inet6</strong> above) of the board.</p>
 </div>
 <div class="section" id="how-do-i-find-the-serial-port-used-for-the-border-router">
