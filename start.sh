@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pushd Tools
-
 echo "Starting example"
 echo "Do you want to upload the platforms to the boards [y/n]?"
 echo "This is only neccesary if not already uploaded."
@@ -56,8 +54,7 @@ echo " "
 echo "Press RESET on boards and press <ENTER>"
 read something
 
-popd
-
 echo "Starting Node Red"
 node-red-pi --max-old-space-size=256
+
 
