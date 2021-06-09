@@ -14,6 +14,8 @@ RIIM_SLIP_Example Documentation
    setup.rst
    walkthrough.rst
    troubleshooting.rst
+   contact.rst
+   license.rst
 
 
 

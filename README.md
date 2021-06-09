@@ -41,3 +41,6 @@ Then enter the **riim_slip** folder and run the install script
 ## Full Documentation
 Please see the documentation located here:
 [https://github.com/RCfesk/RIIM_Slip/blob/master/Doc/build/html/index.html]
+
+## Contact
+Contact Radiocrafts AS at [https://radiocrafts.com/contact/]

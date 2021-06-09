@@ -44,3 +44,8 @@ In Linux, the drivers for the USB-to-UART IC (FTDI FT-series) is built into the 
 - The first device enumerated will get the device **/dev/ttyUSB0**
 - The next will get the device **/dev/ttyUSB1**
 - ....and so on.
+
+
+How do I use tunslip6 on my particular system
+---------------------------------------------
+tunslip6 is provided in source form as tunslip6.c located in the Tools folder. Adaption of this to any specific platform is not supported by Radiocrafts directly. But, as the source code is available, you may choose to adapt and compile it yourself.
