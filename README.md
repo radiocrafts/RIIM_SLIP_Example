@@ -2,6 +2,15 @@
 
 # RIIM SLIP example 
 
+## Description
+This is an intermediate complex example reflecting a simple real world scenario. The scenario is as follows:
+
+---
+
+   You want to create a system consisting of a few nodes logging the temperature at different locations. The system uses CoAP to send and receive data to/from a border router connected to an edge computer. The edge computer is a Raspberry Pi 3 running the Node RED application. You need to use IPv6 all the way.
+
+---
+
 ## Requirements
 |                   |                   |
 | ----------------- | ----------------- |
