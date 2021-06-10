@@ -1,3 +1,0 @@
-[submodule "Tools/rc18xx_bootloader_utility"]
-	path = Tools/rc18xx_bootloader_utility
-	url = git@gitlab.radiocrafts.com:bootstraploader/rc18xx_bootloader_utility.git
