@@ -21,17 +21,12 @@ This is an intermediate complex example reflecting a simple real world scenario.
 Download the source, either by cloning the repository like this:
 
 `
-git clone https://github.com/RCfesk/RIIM_Slip.git
+git clone https://github.com/radiocrafts/RIIM_SLIP_Example
 `
 
-
-...or downloading the zip file provided here:
-[https://github.com/RCfesk/RIIM_Slip/blob/master/Packages/RIIM_Slip.zip]
-
 ## Installation
-If you downloaded the zip-file, unzip it first.
 
-Then enter the **riim_slip** folder and run the install script
+Enter the **riim_slip** folder and run the install script
 
 `
 ./install.sh
