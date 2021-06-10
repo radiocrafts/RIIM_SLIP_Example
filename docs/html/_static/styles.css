@@ -1,0 +1,65 @@
+body {
+    font-family: "Lato";
+    background-color: #008080;
+}
+
+.wy-side-nav-search{
+    background-color: #008080;
+}
+
+.wy-nav-side{
+    background-color: #008080;
+}
+
+.wy-menu-vertical li.current {
+    background:#008080;
+   }
+
+.wy-body-for-nav {
+    background:#008080;
+}
+   
+.wy-menu-vertical li.toctree-l3 span.toctree-expand {
+    color:#008080
+}
+
+.wy-menu-vertical li.toctree-l2.current>a,
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3>a {
+ background:#008080
+}
+
+.wy-menu-vertical li.toctree-l2 a,
+.wy-menu-vertical li.toctree-l3 a,
+.wy-menu-vertical li.toctree-l4 a,
+.wy-menu-vertical li.toctree-l5 a,
+.wy-menu-vertical li.toctree-l6 a,
+.wy-menu-vertical li.toctree-l7 a,
+.wy-menu-vertical li.toctree-l8 a,
+.wy-menu-vertical li.toctree-l9 a,
+.wy-menu-vertical li.toctree-l10 a {
+ color:#FFFFFF;
+}
+
+.wy-menu-vertical li.current>a,
+.wy-menu-vertical li.on a {
+ color:#FFFFFF;
+ background:#1cacac;
+}
+
+.wy-menu-vertical li.current>a:hover,
+.wy-menu-vertical li.on a:hover {
+ background:#3cacac
+}
+
+.wy-menu-vertical li.current>a:hover span.toctree-expand,
+.wy-menu-vertical li.on a:hover span.toctree-expand {
+    background:#3cacac
+}
+
+.wy-menu-vertical li.current a:hover {
+    background:#3cacac
+}
+
+.wy-menu-vertical a:hover {
+    background-color:#3cacac
+}
