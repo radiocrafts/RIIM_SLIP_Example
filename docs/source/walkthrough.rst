@@ -3,7 +3,7 @@ Walkthrough / Quickstart
 
 To get the example up and running without any modifications, you can follow this walkthorugh
 
-#. Set up the Linux Computer as described in the vendors documentation (for instance : `<https://www.raspberrypi.org/>`_
+#. Set up the Edge Computer as described in the vendors documentation (for instance : `<https://www.raspberrypi.org/>`_
 #. Open a terminal and navigate to the RIIM SLIP Example folder
 #. Execute the **./install.sh** script
    - This installs all required dependencies
