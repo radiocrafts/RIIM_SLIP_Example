@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>System Setup &mdash; RIIM SLIP Example  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/styles.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Walkthrough / Quickstart" href="walkthrough.html" />
+    <link rel="prev" title="Acronyms" href="description.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RIIM SLIP Example
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="description.html#description">Description</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">System Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#edge-computer-setup">Edge Computer Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mandatory-prerequisites">Mandatory Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#radvd">radvd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python3">python3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-packages">Python packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#node-red">node-red</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-prerequisites">Optional Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wireshark">wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#microcom">microcom</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#network-setup">Network Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#node-red-setup">Node RED Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="walkthrough.html">Walkthrough / Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact Radiocrafts AS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RIIM SLIP Example</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>System Setup</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/setup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="system-setup">
+<h1>System Setup<a class="headerlink" href="#system-setup" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="edge-computer-setup">
+<h2>Edge Computer Setup<a class="headerlink" href="#edge-computer-setup" title="Permalink to this headline">¶</a></h2>
+<p><em>Note:</em> Running the <strong>./install.sh</strong> script helps you install all prerquisites and set up the Edge Computer</p>
+</div>
+<div class="section" id="mandatory-prerequisites">
+<h2>Mandatory Prerequisites<a class="headerlink" href="#mandatory-prerequisites" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="radvd">
+<h3>radvd<a class="headerlink" href="#radvd" title="Permalink to this headline">¶</a></h3>
+<p>radvd is a tool for routing IPv6 traffic. It can be installed like this</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install radvd <span class="p">|</span> fdsfds
+</pre></div>
+</div>
+</div>
+<div class="section" id="python3">
+<h3>python3<a class="headerlink" href="#python3" title="Permalink to this headline">¶</a></h3>
+<p>Python is an interpreted programming language. It can be installed like this</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install python3
+</pre></div>
+</div>
+</div>
+<div class="section" id="python-packages">
+<h3>Python packages<a class="headerlink" href="#python-packages" title="Permalink to this headline">¶</a></h3>
+<p>Python needs a few packages that are used by the tools provided. These can be installed like this</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install --user pycryptodomex pyserial
+</pre></div>
+</div>
+</div>
+<div class="section" id="node-red">
+<h3>node-red<a class="headerlink" href="#node-red" title="Permalink to this headline">¶</a></h3>
+<p>Node Red is a programming tool for connecting hardware, services and APIs. It can either be installed using the package manager like this (Not recommended, but easier):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install Node-RED
+</pre></div>
+</div>
+<p>Or it can be installed using the install script on the official page <a class="reference external" href="https://nodered.org/docs/getting-started/raspberrypi">https://nodered.org/docs/getting-started/raspberrypi</a> (Recommended, but a little harder)</p>
+</div>
+</div>
+<div class="section" id="optional-prerequisites">
+<h2>Optional Prerequisites<a class="headerlink" href="#optional-prerequisites" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="wireshark">
+<h3>wireshark<a class="headerlink" href="#wireshark" title="Permalink to this headline">¶</a></h3>
+<p>Wireshark is a tool for anayzing network traffic. It is useful for analyzing and debugging problems related to network traffic. It it can be installed like this</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install wireshark
+</pre></div>
+</div>
+</div>
+<div class="section" id="microcom">
+<h3>microcom<a class="headerlink" href="#microcom" title="Permalink to this headline">¶</a></h3>
+<p>Microcom is a simple terminal program that can be used for interfacing UART based serial interfaces. It can be installed like this</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install microcom
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="network-setup">
+<h2>Network Setup<a class="headerlink" href="#network-setup" title="Permalink to this headline">¶</a></h2>
+<p>In general network setup on this level can be complicated. Radiocrafts provide a setup script that sets up all the essentials for the example to work, and leaves out the unneccesary bits. In combination with the Node Red server, this should be sufficient for your application to connect to whatever online server you are using.</p>
+<p>The script uses a precompiled SLIP/TUN driver. This driver is responsible for connecting to the UART and map it to a virtual network device (TUN). This TUN device can in turn be used like most other network devices.</p>
+</div>
+<div class="section" id="node-red-setup">
+<h2>Node RED Setup<a class="headerlink" href="#node-red-setup" title="Permalink to this headline">¶</a></h2>
+<p>After all other setup is done, it is time to setup Node RED. To access Node RED, it must have been started. That can be achieved by executing <strong>./start.sh</strong> which will start it automatically.</p>
+<p>After startup, Node RED will be accesible through a browser. If you are running the browser locally (on the edge computer), the address will be <a class="reference external" href="http://localhost:1880/">http://localhost:1880/</a> . If accessing from the outside, change <strong>localhost</strong> with the IP address of the edge computer. If unsure how to get it, see the troubleshooting section.</p>
+<p>We need to install a CoAP extension to Node RED and import our flow. Start by clicking the menu in the top right corner and select <strong>Manage palette</strong> . Click the <strong>Install</strong> tab and type “coap” in the search bar. Select to install <strong>node-red-contrib-coap</strong>. Node RED is now set up with support for CoAP.</p>
+<a class="reference internal image-reference" href="_images/NR_Palette.png"><img alt="Select Menu -&gt; Manage palette" src="_images/NR_Palette.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/NR_Palette_InstallCoAP.png"><img alt="Install the node-red-contrib-coap package" src="_images/NR_Palette_InstallCoAP.png" style="width: 400px;" /></a>
+<p>Now we need our flow. Open the menu again and select <strong>Import</strong>. Import the file located in ./NodeRed/RIIM_SLIP_Example_NodeRed.json.</p>
+<a class="reference internal image-reference" href="_images/NR_Import.png"><img alt="Select Menu -&gt; Import" src="_images/NR_Import.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/NR_ImportDialog.png"><img alt="Import the flow file" src="_images/NR_ImportDialog.png" style="width: 400px;" /></a>
+<p>All is now set up. To start the Node RED server, click the big red <strong>Deploy</strong> button in the top right corner.</p>
+<a class="reference internal image-reference" href="_images/NR_RIIM_ExFlow.png"><img alt="Import the flow file" src="_images/NR_RIIM_ExFlow.png" style="width: 600px;" /></a>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="walkthrough.html" class="btn btn-neutral float-right" title="Walkthrough / Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="description.html" class="btn btn-neutral float-left" title="Acronyms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Radiocrafts AS.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
