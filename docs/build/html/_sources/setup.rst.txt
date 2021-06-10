@@ -1,7 +1,7 @@
 System Setup
 ============
 
-Linux Machine Setup
+Edge Computer Setup
 -------------------
 
 *Note:* Running the **./install.sh** script helps you install all prerquisites and set up the Edge Computer
