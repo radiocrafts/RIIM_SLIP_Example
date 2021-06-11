@@ -5,12 +5,13 @@ echo "************************************************************"
 echo "It is recommended that you read the documentation before"
 echo "you continue with the installation. It is located in"
 echo "./Doc/build/html/index.html . Do you want to open it now?"
+echo "(Requires web browser)"
 echo "Press [y/n] and <ENTER> : "
 read ViewDoc
 
 if [ "$ViewDoc" == "y" ]
 then
-    xdg-open ./Doc/build/html/index.html &
+    xdg-open ./docs/build/html/index.html &
 fi
 # This script assumes you need sudo to execute apt install
 # It does not check for already existing installations
