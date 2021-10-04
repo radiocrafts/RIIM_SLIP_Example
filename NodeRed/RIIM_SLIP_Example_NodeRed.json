@@ -18,8 +18,7 @@
         "y": 180,
         "wires": [
             [
-                "b4b971ae.b3121",
-                "86d2c33.1fc44c"
+                "b4b971ae.b3121"
             ]
         ]
     },
@@ -45,7 +44,7 @@
         "type": "function",
         "z": "fcbb24dc.49523",
         "name": "",
-        "func": "\nlet IPAddr = Buffer.from([0xfd,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x12,0x34]);\nmsg.res.end(IPAddr);\nconsole.log(\"Test\")\nreturn msg;",
+        "func": "function ArrayToIPv6String (payload) {\n    DestAddr=\"\"\n    for(let i=0;i<16;i+=2){\n        DestAddr += payload[i].toString(16).length < 2 ? \"0\" + payload[i].toString(16) : payload[i].toString(16)\n        DestAddr += payload[i+1].toString(16).length < 2 ? \"0\" + payload[i+1].toString(16) : payload[i+1].toString(16)\n        if(i<14){\n            DestAddr += \":\"\n        }\n    }\n    return DestAddr\n}\n\nNodeAddr=msg.req.payload\nNodeAddr_Str=ArrayToIPv6String(NodeAddr)\n\nconsole.log(\"COMMISIONING:\\nWe got address from node:\" + NodeAddr_Str)\nconsole.log(\"Sending response back to node.\")\n\n// Send response:\nmsg.res.end(\"{\\\"Res\\\":\\\"Registered\\\"}\")\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -56,62 +55,6 @@
         "wires": [
             [
                 "bbdce846.598868"
-            ]
-        ]
-    },
-    {
-        "id": "cdadc80c.11454",
-        "type": "coap request",
-        "z": "fcbb24dc.49523",
-        "method": "PUT",
-        "observe": false,
-        "multicast": false,
-        "multicastTimeout": 20000,
-        "url": "coap://[fd00::ff:fe00:acb0]/BRData",
-        "content-format": "text/plain",
-        "raw-buffer": true,
-        "name": "",
-        "x": 570,
-        "y": 300,
-        "wires": [
-            [
-                "8a716500.e3fc6"
-            ]
-        ]
-    },
-    {
-        "id": "8a716500.e3fc6",
-        "type": "debug",
-        "z": "fcbb24dc.49523",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 770,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "86d2c33.1fc44c",
-        "type": "function",
-        "z": "fcbb24dc.49523",
-        "name": "",
-        "func": "\nlet IPAddr = Buffer.from([0xfd,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x12,0x34]);\n\nconsole.log(\"COMMISIONING: Got address from node:\")\nconsole.log(msg.req.payload)\nconsole.log(\"Sending server address\")\nconsole.log(IPAddr)\nconsole.log()\n\n// IPAddr is the server address the nodes will attach to\nmsg.payload=IPAddr;\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 300,
-        "wires": [
-            [
-                "cdadc80c.11454"
             ]
         ]
     },
@@ -137,7 +80,7 @@
         "type": "debug",
         "z": "fcbb24dc.49523",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -154,7 +97,7 @@
         "type": "function",
         "z": "fcbb24dc.49523",
         "name": "",
-        "func": "console.log(\"Got message from\")\nconsole.log(msg.req.rsinfo.address)\nconsole.log(msg.req.payload.toString())\nconsole.log()\n\nreturn msg;",
+        "func": "console.log(\"Got message from \" + msg.req.rsinfo.address + \" : \")\n//console.log()\nconsole.log(msg.req.payload.toString())\nconsole.log()\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",

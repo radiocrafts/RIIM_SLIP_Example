@@ -3,9 +3,8 @@
 # Kill other running instances
 sudo pkill tunslip6
 
-NetworkDevice=eth0
-#SerialDevice=/dev/ttyUSB0
-#SerialDevice=/dev/serial0
+NetworkDevice=tun0
+
 SerialDevice=$1
 TUNAddr=1:1234
 
@@ -25,27 +24,4 @@ sudo sysctl net.ipv6.conf.all.proxy_ndp=1
 
 # Start the tunslip tool
 sudo ./tunslip6 -v -s $SerialDevice $Prefix::$TUNAddr/64 &
-
-# Generate the radvd configuration file
-read -r -d '' VAR << EOF
-
-   interface $NetworkDevice
-   {
-        AdvSendAdvert on;
-        MaxRtrAdvInterval 30;
-        AdvLinkMTU 1280;
-
-        prefix $Prefix::0/64
-        {
-                AdvOnLink on;
-                AdvAutonomous on;
-        };
-
-   };
-EOF
-
-echo "$VAR" > /etc/radvd.conf
-
-# Start radvd
-sudo radvd
 

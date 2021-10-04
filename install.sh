@@ -28,7 +28,6 @@ read
 # Mandatory packages
 sudo apt install build-essential
 sudo apt install git
-sudo apt install radvd
 sudo apt install python3 python3-pip
 sudo apt install xdg-utils
 

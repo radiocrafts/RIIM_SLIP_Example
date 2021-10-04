@@ -204,7 +204,7 @@
 <p>This example provides a possible solution to these challenges and tasks</p>
 <div class="section" id="system-overview">
 <h2>System Overview<a class="headerlink" href="#system-overview" title="Permalink to this headline">¶</a></h2>
-<p>This image shows the system. The dashed grey parts are optinal, and not part of this example. They probably would, however, be in a real deployment.</p>
+<p>This image shows the system. The dashed grey parts are optional, and not part of this example. They probably would, however, be in a real deployment.</p>
 <script>mermaid.initialize({startOnLoad:true});</script><div class="mermaid">
             graph LR
    idInt(Internet) --- idRPI(edge computer)
@@ -218,7 +218,7 @@
    style idMR2 fill:#aaa,stroke:#888,stroke-width:2px,color:#fff,stroke-dasharray: 3 3
    style idMR3 fill:#aaa,stroke:#888,stroke-width:2px,color:#fff,stroke-dasharray: 3 3
    style idMR4 fill:#aaa,stroke:#888,stroke-width:2px,color:#fff,stroke-dasharray: 3 3
-        </div><p>A CoAP server/client runs on an edge computer. The edge computer runs the Node RED application to connect and implement networking. The edge computer communicates with a RIIM Border Router using SLIP over UART, and is able to talk to all RIIM nodes using IPv6 natively. All RIIM nodes also run CoAP server/clients.</p>
+        </div><p>A CoAP server/client runs on the edge computer. The edge computer runs the Node RED application to connect and implement networking. The edge computer communicates with a RIIM Border Router using SLIP over UART, and is able to talk to all RIIM nodes using IPv6 natively. All RIIM nodes also run CoAP server/clients.</p>
 </div>
 <div class="section" id="topics-not-covered-in-this-example">
 <h2>Topics not covered in this example<a class="headerlink" href="#topics-not-covered-in-this-example" title="Permalink to this headline">¶</a></h2>
@@ -229,12 +229,12 @@
 <li>Migration to other operating systems, hardware or Linux distributions</li>
 <li>Security policies, such as parts running with administrator privilegies, Node Red keys, DTLS etc.</li>
 <li>Containerizations, virtualizations, Python environments</li>
-<li>edge computer application auto startup on boot (See <a class="reference external" href="https://nodered.org/docs/getting-started/raspberrypi">https://nodered.org/docs/getting-started/raspberrypi</a></li>
+<li>Edge computer application auto startup on boot (See <a class="reference external" href="https://nodered.org/docs/getting-started/raspberrypi">https://nodered.org/docs/getting-started/raspberrypi</a></li>
 </ul>
 </div>
 <div class="section" id="edge-computer">
 <h2>Edge Computer<a class="headerlink" href="#edge-computer" title="Permalink to this headline">¶</a></h2>
-<p>This example uses a Raspberry Pi 3 running Raspberry Pi OS as an example. Migration to other single board computers, other Linux distributions or even PCs are outside the scope of this example. However, if keeping to mainstream hardware and Linux-based operating systems, migration should be fairly simple.</p>
+<p>This example uses a Raspberry Pi 3 running Raspberry Pi OS as an example. Migration to other single board computers, other Linux distributions or PCs are outside the scope of this example. However, if keeping to mainstream hardware and Linux-based operating systems, migration should be fairly simple.</p>
 </div>
 <div class="section" id="riim-network-nodes">
 <h2>RIIM network nodes<a class="headerlink" href="#riim-network-nodes" title="Permalink to this headline">¶</a></h2>
@@ -248,7 +248,7 @@
 <li>BRData can respond to CoAP GET and CoAP PUT, to read/write an IPv6 address</li>
 <li>This address is used to send periodic CoAP messages from the BR</li>
 <li>If no IPv6 address is set in <strong>BRData</strong> , the node periodically send its IPv6 address to coap://[fd00::1:1234]/CommData</li>
-<li>This is used for commisioning, as the server gets to know the address of the node</li>
+<li>This is used for commisioning, as the server then gets to know the address of the node</li>
 </ul>
 </dd>
 </dl>
@@ -256,10 +256,9 @@
 <li><dl class="first docutils">
 <dt>Mesh Router application</dt>
 <dd><ul class="first last">
-<li>Sets up a CoAP resource called <strong>“MRData”</strong> that is accessible from BR and everything the BR is connected to</li>
-<li>BRData can respond to CoAP GET and CoAP PUT, to read/write an IPv6 address</li>
-<li>This address is used to send periodic CoAP messages from the MR</li>
-<li>The application also prints out the source and destination address on UART</li>
+<li>For simplicity, the MR does not implement a CoAP resource, but sends it’s temperature to a static address instead</li>
+<li>The application sends the module’s temperature periodically</li>
+<li>The application also prints out status on UART</li>
 </ul>
 </dd>
 </dl>

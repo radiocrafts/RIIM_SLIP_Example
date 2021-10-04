@@ -24,7 +24,7 @@ This example provides a possible solution to these challenges and tasks
 
 System Overview
 ---------------
-This image shows the system. The dashed grey parts are optinal, and not part of this example. They probably would, however, be in a real deployment.
+This image shows the system. The dashed grey parts are optional, and not part of this example. They probably would, however, be in a real deployment.
 
 .. mermaid::
 
@@ -41,7 +41,7 @@ This image shows the system. The dashed grey parts are optinal, and not part of 
       style idMR3 fill:#aaa,stroke:#888,stroke-width:2px,color:#fff,stroke-dasharray: 3 3
       style idMR4 fill:#aaa,stroke:#888,stroke-width:2px,color:#fff,stroke-dasharray: 3 3
 
-A CoAP server/client runs on an edge computer. The edge computer runs the Node RED application to connect and implement networking. The edge computer communicates with a RIIM Border Router using SLIP over UART, and is able to talk to all RIIM nodes using IPv6 natively. All RIIM nodes also run CoAP server/clients.
+A CoAP server/client runs on the edge computer. The edge computer runs the Node RED application to connect and implement networking. The edge computer communicates with a RIIM Border Router using SLIP over UART, and is able to talk to all RIIM nodes using IPv6 natively. All RIIM nodes also run CoAP server/clients.
 
 
 
@@ -54,13 +54,13 @@ These topics are not covered in this example, but could be relevant in a real wo
 - Migration to other operating systems, hardware or Linux distributions
 - Security policies, such as parts running with administrator privilegies, Node Red keys, DTLS etc.
 - Containerizations, virtualizations, Python environments
-- edge computer application auto startup on boot (See `<https://nodered.org/docs/getting-started/raspberrypi>`_
+- Edge computer application auto startup on boot (See `<https://nodered.org/docs/getting-started/raspberrypi>`_
 
 
 Edge Computer
 -------------
 
-This example uses a Raspberry Pi 3 running Raspberry Pi OS as an example. Migration to other single board computers, other Linux distributions or even PCs are outside the scope of this example. However, if keeping to mainstream hardware and Linux-based operating systems, migration should be fairly simple.
+This example uses a Raspberry Pi 3 running Raspberry Pi OS as an example. Migration to other single board computers, other Linux distributions or PCs are outside the scope of this example. However, if keeping to mainstream hardware and Linux-based operating systems, migration should be fairly simple.
 
 
 RIIM network nodes
@@ -74,13 +74,12 @@ There are two ICI applications provided:
    - BRData can respond to CoAP GET and CoAP PUT, to read/write an IPv6 address
    - This address is used to send periodic CoAP messages from the BR
    - If no IPv6 address is set in **BRData** , the node periodically send its IPv6 address to coap://[fd00::1:1234]/CommData
-   - This is used for commisioning, as the server gets to know the address of the node
+   - This is used for commisioning, as the server then gets to know the address of the node
 
 - Mesh Router application
-   - Sets up a CoAP resource called **"MRData"** that is accessible from BR and everything the BR is connected to
-   - BRData can respond to CoAP GET and CoAP PUT, to read/write an IPv6 address
-   - This address is used to send periodic CoAP messages from the MR
-   - The application also prints out the source and destination address on UART
+   - For simplicity, the MR does not implement a CoAP resource, but sends it's temperature to a static address instead
+   - The application sends the module's temperature periodically
+   - The application also prints out status on UART
 
 
 Node Red Server

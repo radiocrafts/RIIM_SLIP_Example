@@ -99,10 +99,12 @@
 <li class="toctree-l1"><a class="reference internal" href="setup.html">System Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="walkthrough.html">Walkthrough / Quickstart</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#there-seems-to-be-no-traffic-going-over-the-slip-interface">There seems to be no traffic going over the SLIP interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#i-m-not-able-to-access-the-serial-port">I’m not able to access the serial port</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-do-i-find-the-ip-address-of-the-edge-computer">How do I find the IP address of the Edge Computer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-do-i-find-the-serial-port-used-for-the-border-router">How do I find the serial port used for the Border Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-do-i-use-tunslip6-on-my-particular-system">How do I use tunslip6 on my particular system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#node-red-does-not-seem-to-be-updated-with-my-latest-flow">Node RED does not seem to be updated with my latest flow</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contact.html">Contact Radiocrafts AS</a></li>
@@ -176,6 +178,20 @@
             
   <div class="section" id="troubleshooting">
 <h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="there-seems-to-be-no-traffic-going-over-the-slip-interface">
+<h2>There seems to be no traffic going over the SLIP interface<a class="headerlink" href="#there-seems-to-be-no-traffic-going-over-the-slip-interface" title="Permalink to this headline">¶</a></h2>
+<p>There is a bug in the <strong>node-red-contrib-coap</strong> plugin that prevents the use of IPv6. This must be bypassed, and can be done by overriding IPv4 altogether in the plugin. This can be done by running the provided script <strong>Tools/DisableIPv4CoAP.sh</strong> . You must restart Node RED for the update to be applied.</p>
+<dl class="docutils">
+<dt>Alternatively, it can be done manually by following these steps:</dt>
+<dd><ol class="first last arabic simple">
+<li>Open the file ~/.node-red/node_modules/node-red-contrib-coap/coap/coap-in.js</li>
+<li>Change line 24 to <strong>serverSettings.type = “udp6”;</strong></li>
+<li>Save the file</li>
+<li>Restart Node RED</li>
+</ol>
+</dd>
+</dl>
+</div>
 <div class="section" id="i-m-not-able-to-access-the-serial-port">
 <h2>I’m not able to access the serial port<a class="headerlink" href="#i-m-not-able-to-access-the-serial-port" title="Permalink to this headline">¶</a></h2>
 <p>Your user must be part of the <strong>dialout</strong> group. Use this command to fix it</p>
@@ -213,6 +229,12 @@
 <div class="section" id="how-do-i-use-tunslip6-on-my-particular-system">
 <h2>How do I use tunslip6 on my particular system<a class="headerlink" href="#how-do-i-use-tunslip6-on-my-particular-system" title="Permalink to this headline">¶</a></h2>
 <p>tunslip6 is provided in source form as tunslip6.c located in the Tools folder. Adaption of this to any specific platform is not supported by Radiocrafts directly. But, as the source code is available, you may choose to adapt and compile it yourself.</p>
+</div>
+<div class="section" id="node-red-does-not-seem-to-be-updated-with-my-latest-flow">
+<h2>Node RED does not seem to be updated with my latest flow<a class="headerlink" href="#node-red-does-not-seem-to-be-updated-with-my-latest-flow" title="Permalink to this headline">¶</a></h2>
+<p>Remove the unused sheets by selecting the unused tab, then select the 3 bars in the top right corner, select <strong>Flows</strong> and <strong>Delete</strong>.</p>
+<p>To remove the CoAP server itself, select the 3 bars and then select <strong>Configuration nodes</strong>. Select <strong>CoAPServer</strong> and <strong>Delete</strong></p>
+<p>After deleting the orignal flow or the CoAPServer, you need to re-import the setup (<strong>RIIM_SLIP_Example_NodeRed.json</strong>)</p>
 </div>
 </div>
 

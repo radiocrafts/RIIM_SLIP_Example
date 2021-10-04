@@ -1,6 +1,18 @@
 Troubleshooting
 ===============
 
+There seems to be no traffic going over the SLIP interface
+----------------------------------------------------------
+There is a bug in the **node-red-contrib-coap** plugin that prevents the use of IPv6. This must be bypassed, and can be done by overriding IPv4 altogether in the plugin. This can be done by running the provided script **Tools/DisableIPv4CoAP.sh** . You must restart Node RED for the update to be applied.
+
+
+Alternatively, it can be done manually by following these steps:
+  1. Open the file ~/.node-red/node_modules/node-red-contrib-coap/coap/coap-in.js
+  2. Change line 24 to **serverSettings.type = "udp6";**
+  3. Save the file
+  4. Restart Node RED
+
+
 I'm not able to access the serial port
 --------------------------------------
 Your user must be part of the **dialout** group. Use this command to fix it
@@ -49,3 +61,12 @@ In Linux, the drivers for the USB-to-UART IC (FTDI FT-series) is built into the 
 How do I use tunslip6 on my particular system
 ---------------------------------------------
 tunslip6 is provided in source form as tunslip6.c located in the Tools folder. Adaption of this to any specific platform is not supported by Radiocrafts directly. But, as the source code is available, you may choose to adapt and compile it yourself.
+
+
+Node RED does not seem to be updated with my latest flow
+--------------------------------------------------------
+Remove the unused sheets by selecting the unused tab, then select the 3 bars in the top right corner, select **Flows** and **Delete**. 
+
+To remove the CoAP server itself, select the 3 bars and then select **Configuration nodes**. Select **CoAPServer** and **Delete**
+
+After deleting the orignal flow or the CoAPServer, you need to re-import the setup (**RIIM_SLIP_Example_NodeRed.json**)

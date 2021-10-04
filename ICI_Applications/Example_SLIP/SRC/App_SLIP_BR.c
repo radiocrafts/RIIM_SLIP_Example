@@ -22,19 +22,24 @@
 
 /**
  @file
- @brief 
- @version 
- @date 
+ @brief Application to run on a border router. It sends its own address to a known 
+ server (the SLIP interface). If it receives the correct response, it starts sending 
+ CoAP NoAck messages to that address periodically (every 10 seconds) as well. 
+
+ It also includes an example CoAP Handler to handle any get and set the destination
+ address of the CoAP server its connected to.
 */
 
 #include "RIIM_UAPI.h"
 
-static const uint32_t   timerPeriod=1000;
-static uint8_t timerHandler;
+static const uint32_t   timerPeriod=5000;
+static uint8_t timerHandle;
 
-// Use address 0xfd56::1:1 as commisioning address. This is how the external network
+#define MAX_PAYLOAD_LEN 100
+#define COAP_RESPONSE_OK "{\"Res\":\"Registered\"}"
+
+// Use address 0xfd00::1:1234 as commisioning address. This is how the external network
 // will get this node's IPv6 address
-//const IPAddr CommisioningIP={.byte={0xfd, 0x56, 0,0,0,0,0,0,0,0,0,0,0, 0x01, 0x00, 0x01}};
 const IPAddr CommisioningIP={.byte={0xfd, 0x00, 0,0,0,0,0,0,0,0,0,0,0, 0x01, 0x12, 0x34}};
 const uint8_t CoAP_CommisioningCoAPResource[]="CommData";
 
@@ -89,13 +94,31 @@ void CoAPHandler(RequestType type, IPAddr src_ipAddr, uint8_t *payload, uint8_t 
 }
 
 /**
- * @brief Periodic CoAP transmission (if destination IP is set)
+ * @brief Send temperature as a JSON string
  */
-void SendCoAP()
+void SendTemperature()
+{
+    uint8_t MsgSize;
+
+    // Toggle the LED to indicate that we transmit a CoAP packet
+    GPIO.toggle(GPIO_7);
+
+    char TemperatureJSONString[MAX_PAYLOAD_LEN];
+    MsgSize=Util.snprintf(TemperatureJSONString, MAX_PAYLOAD_LEN, "{\"Temp\":\"%d\"}", Util.getTemperature());
+    CoAP.sendNoAck(CoAP_PUT,false,"ServerData",TemperatureJSONString,MsgSize);
+}
+
+/**
+ * @brief Send commisioning packet. This is our own IPv6 address.
+ */
+void SendCommisioning()
 {
     int i;
     IPAddr MyIPAddr;
 
+
+    // Toggle the LED to indicate that we transmit a CoAP packet
+    GPIO.toggle(GPIO_7);
 
     // Check if we are to send a regular message. 
     // This is set to true if we have received a destination IPv6 address
@@ -103,12 +126,9 @@ void SendCoAP()
     // our own address
     if(SendPeriodicCoAPMessage != true){
         Network.getAddress(&MyIPAddr);
-        CoAP.sendNoAck(CoAP_PUT, false, CoAP_CommisioningCoAPResource, (uint8_t*)&MyIPAddr, sizeof(MyIPAddr));
+        CoAP.send(CoAP_PUT, false, CoAP_CommisioningCoAPResource, (uint8_t*)&MyIPAddr, sizeof(MyIPAddr));
         return;
     }
-
-    // Toggle the LED to indicate that we transmit a CoAP packet
-    GPIO.toggle(GPIO_7);
 
     // Actually send the packet
     CoAP.sendNoAck(CoAP_GET, false, CoAP_DestinationCoAPResource, CoAP_TransmissionString, sizeof(CoAP_TransmissionString));
@@ -116,6 +136,20 @@ void SendCoAP()
     return;
 }
 
+/**
+ * @brief Check for responses
+ */
+void CoAP_ResponseHandler(const uint8_t *payload, uint8_t payload_size)
+{
+    if(Util.strcmp(payload, COAP_RESPONSE_OK)==0){
+        GPIO.setValue(GPIO_6, HIGH); // Indicate node is commisioned
+        Timer.stop(timerHandle);
+        timerHandle=Timer.create(PERIODIC, timerPeriod, SendTemperature);
+        Timer.start(timerHandle);
+    }
+
+    return;
+}
 
 /**
  * @brief This is the entry point of the user application. It is 
@@ -141,19 +175,29 @@ RIIM_SETUP()
     // time a CoAP packet is received on our custom CoAP resource
     GPIO.setDirection(GPIO_6, OUTPUT);
     GPIO.setDirection(GPIO_7, OUTPUT);
+    GPIO.setValue(GPIO_6, LOW);
+    GPIO.setValue(GPIO_7, LOW);
 
     // Set up custom CoAP resource
     CoAP.registerResource(CoAP_ResourceName, NULL, CoAPHandler);
+    CoAP.registerResponseHandler(CoAP_ResponseHandler);
 
     // Set network key
-    const uint8_t nwKey[16]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    const uint8_t nwKey[16]={10,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
     Network.setNWKey((uint8_t*)nwKey);
+
+    Network.setPanId(0x1134);
+    Network.setChannel(32);
+    Network.setFreqBand(RF_BAND_868);
+    Network.setTxPower(14);
+    Network.setTschMaxBroadcastRate(8); // To speed up joining time in TSCH
+//    Network.setTSCHParameters(TSCH_HIGH_THROUGHPUT_SENSOR_DATA);
 
     // Set channel. Only applicable for SingleChannel platforms
     Network.setChannel(32);
 
     // Start as a border router
-    Network.startBorderRouter(NULL,NULL,NULL,NULL);
+//    Network.startBorderRouter(NULL,NULL,NULL,NULL);
     
     // Enable and start SLIP
     Network.startSlip();
@@ -162,8 +206,8 @@ RIIM_SETUP()
     CoAP.connectToServer6(CommisioningIP,false);
 
     // Setup timers
-    timerHandler=Timer.create(PERIODIC, timerPeriod, SendCoAP);
-    Timer.start(timerHandler);
+    timerHandle=Timer.create(PERIODIC, timerPeriod, SendCommisioning);
+    Timer.start(timerHandle);
     
     return UAPI_OK;
 }

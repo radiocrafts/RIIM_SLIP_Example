@@ -10,14 +10,6 @@ Edge Computer Setup
 Mandatory Prerequisites
 -----------------------
 
-radvd
-+++++
-radvd is a tool for routing IPv6 traffic. It can be installed like this
-
-.. code-block:: bash
-
-    sudo apt install radvd | fdsfds
-
 python3
 +++++++
 Python is an interpreted programming language. It can be installed like this

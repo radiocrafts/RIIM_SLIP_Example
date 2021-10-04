@@ -13,6 +13,11 @@ To get the example up and running without any modifications, you can follow this
 #. You are up and running. Now you can observe the data, make modifications and play around.
 
 
+How to observe the output
+-------------------------
+The output is default printed to the console. The output will be printed in the same console as you ran **./start.sh**. You can also enable output in Node-RED itself by enabling the green **msg** nodes and selecting **Debug messages**. The debug messages are very detailed, so it is recommended to use the console.
+
+
 Modifications and customization
 -------------------------------
 
