@@ -54,6 +54,24 @@ then
     sudo apt install tcpdump
 fi
 
+echo " "
+echo "************************************************************"
+echo "Is your system 32 or 64 bit? If unsure, try 32 bit first"
+echo "1. 32 bit"
+echo "2. 64 bit"
+echo "Select [1,2] and press <ENTER> : "
+read SystemType
+
+if [ $SystemType -eq 1 ] 
+then
+    echo "Using 32 bit"
+    cp Tools/Tunslip_Binaries/32-bit/tunslip6 Tools/
+else
+    echo "Using 64 bit"
+    cp Tools/Tunslip_Binaries/64-bit/tunslip6 Tools/
+fi
+
+
 # Node Red is special
 echo " "
 echo "************************************************************"
